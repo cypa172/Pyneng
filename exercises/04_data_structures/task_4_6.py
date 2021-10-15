@@ -23,4 +23,4 @@ Next-Hop              {}
 Last update           {}
 Outbound Interface    {}
 '''
-print(print_template.format(str(ospf_route[0]).strip(','), str(ospf_route[1]).strip(','), str(ospf_route[3]).strip(','),str(ospf_route[4]).strip(','), str(ospf_route[5].strip(',')))) 
+print(print_template.format(str(ospf_route[0]).strip(','), str(ospf_route[1]).strip('[]'), str(ospf_route[3]).strip(','),str(ospf_route[4]).strip(','), str(ospf_route[5].strip(',')))) 

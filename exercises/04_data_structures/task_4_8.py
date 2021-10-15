@@ -26,3 +26,9 @@
 """
 
 ip = "192.168.3.1"
+ip = ip.split('.')
+ip_stdout = '''{:<10}{:<10}{:<10}{:<10}
+{:08b}  {:08b}  {:08b}  {:08b}
+'''
+print(ip_stdout.format(str(ip[0]), str(ip[1]), str(ip[2]), int(ip[3]), int(ip[0]), int(ip[1]), int(ip[2]), int(ip[3])))
+ 

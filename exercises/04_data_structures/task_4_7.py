@@ -16,3 +16,12 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+mac = mac.split(':')
+A = list(mac[0])
+A = 4*bin(int(A[0], 16)).lstrip('0b')
+B = list(mac[1])
+B = 4*bin(int(B[0], 16)).lstrip('0b')
+C = list(mac[2])
+C = 4*bin(int(C[0], 16)).lstrip('0b')
+ABC = A+B+C
+print(ABC)
