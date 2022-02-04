@@ -18,7 +18,8 @@ $ python task_5_1a.py
 Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
 решить без использования условия if.
 """
-
+from pprint import pprint
+from sys import argv
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -44,3 +45,7 @@ london_co = {
         "routing": True,
     },
 }
+unit = input('Введите имя устройства (r1/r2/sw1): ')
+param = input ('Введите имя параметра ("location/vendor/model/ios/ip/vlans/routing"): ')
+
+pprint(london_co[unit][param])

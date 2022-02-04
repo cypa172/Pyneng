@@ -20,7 +20,8 @@ $ python task_5_1.py
 Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
 решить без использования условия if.
 """
-
+from sys import argv
+from pprint import pprint
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -46,3 +47,6 @@ london_co = {
         "routing": True,
     },
 }
+unit = input('Введите название устройства(r1/r2/sw1): ')
+
+pprint(london_co[unit])
