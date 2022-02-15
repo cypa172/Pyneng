@@ -6,26 +6,25 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_function_exists, strip_empty_lines
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_functions_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_18_1, "send_show_command")
 
 
 def test_function_return_value(r1_test_connection, first_router_from_devices_yaml):
     """
-    Тест проверяет работу функции send_show_command
-    first_router_from_devices_yaml - это первое устройство из файла devices.yaml
-    r1_test_connection - это сессия SSH с первым устройством из файла devices.yaml
-                         Используется для проверки вывода
+    first_router_from_devices_yaml - is the first device from the devices.yaml file
+    r1_test_connection - is the SSH session with the first device from the
+    devices.yaml file. Used to check the output
     """
     correct_return_value = strip_empty_lines(
         r1_test_connection.send_command("sh ip int br")
@@ -33,20 +32,18 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
     return_value = strip_empty_lines(
         task_18_1.send_show_command(first_router_from_devices_yaml, "sh ip int br")
     )
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value != None, "The function returns None"
     assert (
         type(return_value) == str
-    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert (
-        correct_return_value == return_value
-    ), "Функция возвращает неправильное значение"
+    ), f"The function must return string, and it returns a {type(return_value).__name__}"
+    assert correct_return_value == return_value, "Function returns wrong value"
 
 
 def test_function_return_value_different_args(
     r1_test_connection, first_router_from_devices_yaml
 ):
     """
-    Проверка работы функции с другими аргументами
+    Checking the function with different arguments
     """
     correct_return_value = strip_empty_lines(
         r1_test_connection.send_command("sh int description")
@@ -56,10 +53,8 @@ def test_function_return_value_different_args(
             first_router_from_devices_yaml, "sh int description"
         )
     )
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value != None, "The function returns None"
     assert (
         type(return_value) == str
-    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
-    assert (
-        correct_return_value == return_value
-    ), "Функция возвращает неправильное значение"
+    ), f"The function must return string, and it returns a {type(return_value).__name__}"
+    assert correct_return_value == return_value, "Function returns wrong value"

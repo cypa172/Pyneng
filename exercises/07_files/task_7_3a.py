@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Задание 7.3a
+Task 7.3a
 
-Сделать копию скрипта задания 7.3.
+Make a copy of the code from the task 7.3.
 
-Переделать скрипт: Отсортировать вывод по номеру VLAN
+Add this functionality: Sort output by VLAN number
 
-В результате должен получиться такой вывод:
+As a result, you should get the following output:
 10       01ab.c5d0.70d0      Gi0/8
 10       0a1b.1c80.7000      Gi0/4
 100      01bb.c580.7000      Gi0/1
@@ -17,11 +17,11 @@
 500      02b1.3c80.7b00      Gi0/5
 1000     0a4b.c380.7d00      Gi0/9
 
-Обратите внимание на vlan 1000 - он должен выводиться последним.
-Правильной сортировки можно добиться, если vlan будет числом, а не строкой.
+Pay attention to vlan 1000 - it should be displayed last.
+Correct sorting can be achieved if vlan is a number, not a string.
 
-Подсказка: Для сортировки удобно сначала создать список списков такого типа,
-а потом сортировать.
+Hint: For sorting, it is convenient to first create a list of lists,
+and then sort:
 
 [[100, '01bb.c580.7000', 'Gi0/1'],
  [200, '0a4b.c380.7c00', 'Gi0/2'],
@@ -33,10 +33,10 @@
  [10, '01ab.c5d0.70d0', 'Gi0/8'],
  [1000, '0a4b.c380.7d00', 'Gi0/9']]
 
-Сортировка должна быть по первому элементу (vlan), а если первый элемент одинаковый,
-то по второму. Так работает по умолчанию функция sorted и метод sort, если сортировать
-список списков выше.
+The sort must be by the first element (vlan), and if the first element is the same,
+then the second. This is how the sorted function and the sort method work by default,
+if you sort list of lists above.
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """

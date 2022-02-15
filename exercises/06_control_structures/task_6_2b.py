@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Задание 6.2b
+Task 6.2b
 
-Сделать копию скрипта задания 6.2a.
+Make a copy of the code from the task 6.2a.
 
-Дополнить скрипт: Если адрес был введен неправильно, запросить адрес снова.
+Add this functionality: If the address was entered incorrectly, request the address again.
 
-Если адрес задан неправильно, выводить сообщение: 'Неправильный IP-адрес'
-Сообщение "Неправильный IP-адрес" должно выводиться только один раз,
-даже если несколько пунктов выше не выполнены.
+The message "Invalid IP address" should be printed only once,
+even if several chacks are not passed.
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """

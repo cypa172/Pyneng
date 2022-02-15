@@ -12,69 +12,65 @@ from pyneng_common_functions import (
     unify_topology_dict,
 )
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_class_created():
     """
-    Проверка, что класс создан
+    Checking that the class has been created
     """
     check_class_exists(task_22_1d, "Topology")
 
 
 def test_attr_topology(topology_with_dupl_links):
-    """Проверяем, что в объекте Topology есть атрибут topology"""
+    """Checking that the Topology object has a topology attribute"""
     return_value = task_22_1d.Topology(topology_with_dupl_links)
     check_attr_or_method(return_value, attr="topology")
 
 
 def test_topology_normalization(topology_with_dupl_links, normalized_topology_example):
-    """Проверка удаления дублей в топологии"""
+    """Checking the removal of duplicates in a topology"""
     correct_topology = unify_topology_dict(normalized_topology_example)
     return_value = task_22_1d.Topology(topology_with_dupl_links)
     assert (
         type(return_value.topology) == dict
-    ), f"По заданию в переменной topology должен быть словарь, а не {type(return_value.topology).__name__}"
+    ), f"topology attribute should be a dictionary, not a {type(top_with_data.topology).__name__}"
     assert len(correct_topology) == len(
         return_value.topology
-    ), "После создания экземпляра, в переменной topology должна находиться топология без дублей"
+    ), "After creating an instance, the topology attribute should contain a topology without duplicates"
 
 
 def test_method_add_link_created(normalized_topology_example):
-    """Проверяем, что в объекте Topology есть метод add_link"""
     return_value = task_22_1d.Topology(normalized_topology_example)
     check_attr_or_method(return_value, method="add_link")
 
 
 def test_method_add_link(normalized_topology_example, capsys):
-    """Проверка работы метода add_link"""
     return_value = task_22_1d.Topology(normalized_topology_example)
 
     add_link_result = return_value.add_link(("R1", "Eth0/4"), ("R7", "Eth0/0"))
-    assert None == add_link_result, "Метод add_link не должен ничего возвращать"
+    assert None == add_link_result, "add_link method must return None"
 
     assert (
         "R1",
         "Eth0/4",
-    ) in return_value.topology, "После добавления соединения через метод add_link, оно должно существовать в топологии"
+    ) in return_value.topology, "After adding a connection via the add_link method, it must exist in the topology"
     assert 7 == len(
         return_value.topology
-    ), "После добавления соединения количество соединений должно быть равно 7"
+    ), "After adding a connection, the number of connections should be 7"
 
-    # проверка добавления существующего линка
     return_value.add_link(("R1", "Eth0/4"), ("R7", "Eth0/0"))
-    out, err = capsys.readouterr()
+    stdout, err = capsys.readouterr()
     assert (
-        "Такое соединение существует" in out
-    ), "При добавлении существующего соединения, не было выведено сообщение 'Такое соединение существует'"
+        "Such a connection already exists" in stdout
+    ), "When adding an existing connection, the message 'Such a connection already exists' was not printed"
 
-    # проверка добавления линка с существующим портом
     return_value.add_link(("R1", "Eth0/4"), ("R7", "Eth0/5"))
-    out, err = capsys.readouterr()
+    stdout, err = capsys.readouterr()
     assert (
-        "Cоединение с одним из портов существует" in out
-    ), "При добавлении соединения с существующим портом, не было выведено сообщение 'Cоединение с одним из портов существует'"
+        "A link to one of the ports exists" in stdout
+    ), "When adding a connection to an existing port, the 'A link to one of the ports exists' message was not printed"

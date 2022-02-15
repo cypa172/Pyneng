@@ -6,23 +6,23 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_function_exists, read_all_csv_content_as_list
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_function_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_17_1, "write_dhcp_snooping_to_csv")
 
 
 def test_return_value(tmpdir):
     """
-    Проверка работы функции
+    Function check
     """
     correct_return_value = sorted(
         [
@@ -53,15 +53,13 @@ def test_return_value(tmpdir):
 
     assert (
         None == return_value
-    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
-    assert correct_return_value == sorted(
-        csv_content
-    ), "Функция возвращает неправильное значение"
+    ), f"The function must return None, and it returns a {type(return_value).__name__}"
+    assert correct_return_value == sorted(csv_content), "Function returns wrong value"
 
 
 def test_function_return_value_different_args(tmpdir):
     """
-    Проверка работы функции с другими аргументами
+    Checking the function with different arguments
     """
     correct_return_value = sorted(
         [
@@ -87,7 +85,5 @@ def test_function_return_value_different_args(tmpdir):
 
     assert (
         None == return_value
-    ), f"По заданию функция должна возвращать None, а возвращает {type(return_value).__name__}"
-    assert correct_return_value == sorted(
-        csv_content
-    ), "Функция возвращает неправильное значение"
+    ), f"The function must return None, and it returns a {type(return_value).__name__}"
+    assert correct_return_value == sorted(csv_content), "Function returns wrong value"

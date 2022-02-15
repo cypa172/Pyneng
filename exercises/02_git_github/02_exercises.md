@@ -1,14 +1,7 @@
-# Задания
+# Tasks
 
-### Задание 2.1
+### Task 2.1
 
-В этом задании необходимо:
+Create your repository based on repository template with tasks and examples. To do this, press "Use this template".
 
-* создать свой репозиторий для выполнения заданий на GitHub
-* клонировать его на свою виртуалку/хост
-
-Создать свой репозиторий на основе шаблона [репозиторий с заданиями и примерами](https://github.com/natenka/pyneng-examples-exercises).
-
-> [Как создать репозиторий на основе шаблона](https://pyneng.readthedocs.io/ru/latest/book/02_git_github/git_github_changes.html).
-
-
+Created repository will be a copy of pyneng-examples-exercises-en repository, but is not tied to it. It's better to perform tasks in prepared files in exercises directory as tests for tasks depend on created directory structure.

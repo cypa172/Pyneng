@@ -7,16 +7,16 @@ sys.path.append("..")
 from pyneng_common_functions import unified_columns_output
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_task_stdout(capsys):
     """
-    Проверка работы задания
+    Task check
     """
     import task_4_8
 
@@ -26,7 +26,7 @@ def test_task_stdout(capsys):
     )
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using print"
     assert correct_stdout == unified_columns_output(
         out.strip()
-    ), "На стандартный поток вывода выводится неправильная строка"
+    ), "Wrong line is printed to stdout"

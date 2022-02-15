@@ -1,5 +1,6 @@
 import os
 import pytest
+import task_20_1
 import task_20_2
 import sys
 
@@ -8,17 +9,17 @@ sys.path.append("..")
 from pyneng_common_functions import render_jinja_template
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_templates_exists():
     assert os.path.exists(
         "templates/cisco_router_base.txt"
-    ), "Шаблон templates/cisco_router_base.txt не существует"
+    ), "Template templates/cisco_router_base.txt does not exist"
 
 
 def test_function_return_value():
@@ -47,9 +48,15 @@ def test_function_return_value():
     template = "templates/cisco_router_base.txt"
     data = {"hostname": "R1"}
     return_value = render_jinja_template(template, data)
-    assert service_section in return_value, "В итоговой конфигурации нет команд service"
-    assert alias_section in return_value, "В итоговой конфигурации нет команд alias"
+    assert (
+        service_section in return_value
+    ), "There is no service commands in the configuration"
+    assert (
+        alias_section in return_value
+    ), "There is no alias commands in the configuration"
     assert (
         eem_section in return_value
-    ), "В итоговой конфигурации нет настройки event manager"
-    assert data["hostname"] in return_value, "В итоговой конфигурации нет hostname"
+    ), "There is no event manager commands in the configuration event manager"
+    assert (
+        data["hostname"] in return_value
+    ), "There is no hostname command in the configuration"

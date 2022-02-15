@@ -13,11 +13,11 @@ from pyneng_common_functions import (
 from conftest import create_ssh_connect
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 with open("devices.yaml") as f:
@@ -28,7 +28,7 @@ with open("devices.yaml") as f:
 
 def test_functions_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_19_3a, "send_command_to_devices")
 
@@ -49,7 +49,7 @@ def test_function_return_value_from_single_device(
     command_dict,
 ):
     """
-    Проверка работы функции
+    Function check
     """
     device_ip = device["host"]
     commands = command_dict[device_ip]
@@ -59,7 +59,6 @@ def test_function_return_value_from_single_device(
         output += f"{ssh.find_prompt()}{command}\n{ssh.send_command(command)}\n"
     ssh.disconnect()
     correct_output = strip_empty_lines(output)
-
     dest_filename = tmpdir.mkdir("test_tasks").join("task_19_3.txt")
 
     return_value = task_19_3a.send_command_to_devices(
@@ -68,19 +67,19 @@ def test_function_return_value_from_single_device(
         filename=dest_filename,
         limit=3,
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert None == return_value, "The function must return None"
     dest_file_content = strip_empty_lines(dest_filename.read().strip())
 
     assert (
         correct_output == dest_file_content
-    ), f"В итоговом файле нет вывода с {device_ip}"
+    ), f"Output file does not have output from {device_ip}"
 
 
 def test_function_return_value_from_all_devices(
     three_routers_from_devices_yaml, r1_r2_r3_test_connection, tmpdir
 ):
     """
-    Проверка работы функции
+    Function check
     """
     routers_ip = [router["host"] for router in three_routers_from_devices_yaml]
     command = "sh ip int br"
@@ -93,17 +92,16 @@ def test_function_return_value_from_all_devices(
         dest_filename,
         limit=3,
     )
-    assert None == return_value, "Функция должна возвращать None"
+    assert None == return_value, "The function must return None"
 
     dest_file_content = dest_filename.read().strip()
 
-    # проверяем, что вывод с каждого устройства есть в файле
     assert (
         out1.strip() in dest_file_content
-    ), "В итоговом файле нет вывода с первого устройства"
+    ), "Output file does not have output from first device"
     assert (
         out2.strip() in dest_file_content
-    ), "В итоговом файле нет вывода со второго устройства"
+    ), "Output file does not have output fromо second device"
     assert (
         out3.strip() in dest_file_content
-    ), "В итоговом файле нет вывода с третьего устройства"
+    ), "Output file does not have output from third device"
