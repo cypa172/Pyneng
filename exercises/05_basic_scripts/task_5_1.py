@@ -18,6 +18,7 @@ Restriction: You cannot modify the london_co dictionary.
 All tasks must be completed using only the topics covered. That is, this task can be
 solved without using the if condition.
 """
+#!/usr/bin/env python
 
 london_co = {
     "r1": {
@@ -44,3 +45,5 @@ london_co = {
         "routing": True,
     },
 }
+unit = input('Введите имя устройства: ')
+print(london_co[unit])
