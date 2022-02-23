@@ -54,7 +54,7 @@ london_co = {
 }
 
 unit = input ('Введите имя устройства: ')
-print ("Введите имя параметра ", str(london_co[unit].keys()).strip())
-param = input (': ')
+param = input (print ("Введите имя параметра ", list(london_co[unit].keys())))
+
 
 pprint(london_co[unit][param])
