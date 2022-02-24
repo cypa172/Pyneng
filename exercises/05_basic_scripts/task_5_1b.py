@@ -27,6 +27,7 @@ solved without using the if condition.
 #!/usr/bin/env python
 from pprint import pprint
 
+
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -54,7 +55,8 @@ london_co = {
 }
 
 unit = input ('Введите имя устройства: ')
-param = input (print ("Введите имя параметра ", list(london_co[unit].keys())))
+param_list = str(list(london_co[unit].keys())).strip('[]')
+param = input ("Введите имя параметра ({}): ".format(param_list))
 
 
 pprint(london_co[unit][param])
