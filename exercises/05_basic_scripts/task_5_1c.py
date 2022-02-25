@@ -21,6 +21,8 @@ Restriction: You cannot modify the london_co dictionary.
 All tasks must be completed using only the topics covered. That is, this task can be
 solved without using the if condition.
 """
+#! /usr/bin/env python
+from pprint import pprint
 
 london_co = {
     "r1": {
@@ -47,3 +49,9 @@ london_co = {
         "routing": True,
     },
 }
+
+unit = input('Введите название устройства: ')
+param_list = str(list(london_co[unit].keys())).strip('[]')
+param = input ('Введите название параметра ({}): '.format(param_list))
+
+pprint (london_co[unit][param].get('ips','Такого параметра нет'))
