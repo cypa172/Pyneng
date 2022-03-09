@@ -36,17 +36,21 @@ mask_zero = "0"*(32 - int(mask))
 mask_one = "1"*(int(mask))
 mask_bin = mask_one + mask_zero
 
-'''pprint(add)
-pprint(mask)
-pprint(one)
-pprint(zero)'''
+
+
+#pprint(add)
+#pprint(mask)
+#pprint(mask_one)
+#pprint(mask_zero)
+#pprint(mask_bin)
+
 print (f'''
 Network:
-{oct[0]:<8} {oct[1]:<8} {oct[2]:<8} {oct[3]:<8}
+{oct[0]:<16} {oct[1]:<16} {oct[2]:<16} {oct[3]:<16}
 {int(oct[0]):08b} {int(oct[1]):08b} {int(oct[2]):08b} {int(oct[3]):08b}
 
 Mask:
 /{mask}
-{int((mask_bin[0:8]),2):<8} {int((mask_bin[8:16]),2):<8} {int((mask_bin[16:24]),2):<8} {int((mask_bin[24:32]),2):<8}
-{mask_bin[0:8]} {mask_bin[8:16]} {mask_bin[16:24]} {mask_bin[24:32]}
+{int((mask_bin[0:8]),2):<16} {int((mask_bin[8:16]),2):<16} {int((mask_bin[16:24]),2):<16} {int((mask_bin[24:32]),2):<16}
+{mask_bin[0:8]:<8} {mask_bin[8:16]:<8} {mask_bin[16:24]:<8} {mask_bin[24:32]:<8}
 ''')
