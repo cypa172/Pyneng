@@ -12,3 +12,22 @@ Depending on the type of address (described below), print to the stdout:
 
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
+ip_add = input ('Введите IP адрес в формате 10.1.1.1: ' )
+ip_oct = (ip_add.split('.'))[0]
+
+#print(ip_add)
+#print(ip_oct)
+
+if ip_add == '255.255.255.255':
+        print('local broadcast')
+
+elif ip_add == '0.0.0.0':
+        print('unassigned')
+else:
+    if int(ip_oct) >=240:
+        print('unused')
+    elif int(ip_oct) >= 224:
+        print('multicast')
+    elif int(ip_oct) >= 1:
+        print('unicast')
+
